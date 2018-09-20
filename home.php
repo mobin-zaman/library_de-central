@@ -77,6 +77,59 @@ $conn = new mysqli('localhost','root','amarsql','library');
     echo '</table>';
     echo '</div>';
 
+
+//ongoing issues 
+
+    
+$sql="SELECT book.b_id,book.title,book.author,book.category,user.username FROM book,user WHERE book.u_id=user.u_id AND is_deleted='0' AND is_issued='1' order by entry_time desc";
+$result=$conn->query($sql);
+$sql="SELECT user.username FROM book,user WHERE book.last_issue=user.u_id AND is_deleted='0' AND is_issued='1' order by entry_time desc";
+$result2=$conn->query($sql);
+//html code goes here for table
+echo '<div class="w3-container">';
+echo '<hr>';
+echo '<div class="w3-center">';
+echo '<h2>Ongoing issues</h2>';
+echo '</div>';
+echo '<div class="w3-responsive w3-card-4">';
+echo '<table class="w3-table w3-striped w3-bordered">';
+echo '<thead>';
+echo '<tr class="w3-theme">';
+echo '<th>Book Id</th>';
+echo '<th>Title</th>';
+echo '<th>Author</th>';
+echo '<th>Category</th>';
+echo '<th>Owner</th>';
+echo '<th>Issued to</th>';
+echo '</tr>';
+echo '</thead>';
+echo '<tbody>';
+//array for priting borrowers
+$a=array();
+$i=0;
+while($row2=$result2->fetch_assoc()) {
+  $a[]=$row2["username"];
+  $i++;
+}
+
+echo $i;
+$i=0;
+
+while($row=$result->fetch_assoc())
+{
+echo '<tr class="w3-white">';
+echo '<td>'.$row["b_id"].'</td>';
+echo '<td>'.$row["title"].'</td>';
+echo '<td>'.$row["author"].'</td>';
+echo '<td>'.$row["category"].'</td>';
+echo '<td>'.$row["username"].'</td>';
+echo '<td>'.$a[$i++].'</td>';
+echo '</tr>';
+}
+
+echo '</tbody>';
+echo '</table>';
+echo '</div>';
     //ends here
 
 
