@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <html>
 <head>
   <title>Library de-central </title>
@@ -19,7 +20,7 @@
       </div>
     </div>
 </header>
-<?php session_start();
+<?php 
 
 if(!isset($_SESSION['u_id'])){
     $_SESSION['log_in_first']="Log in to view this page";
@@ -59,7 +60,7 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
     //$u_id for checking if the book belongs to current user
     $u_id=$_SESSION['u_id'];
     //set connection and run query
-    $conn = new mysqli('localhost','root','amarsql','library');
+    $conn=new mysqli('localhost','sadatjub_book','*BFQK^QQRIi;','sadatjub_lib');
         if($conn->connect_error) die("connection to db failed");
 
     $b_id=mysqli_real_escape_string($conn, $_POST["b_id"]);

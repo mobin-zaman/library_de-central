@@ -38,11 +38,10 @@
 
 
 <?php 
-$conn = new mysqli('localhost','root','amarsql','library');
+    $conn=new mysqli('localhost','sadatjub_book','*BFQK^QQRIi;','sadatjub_lib');   
     //user id for the query
     $u_id=$_SESSION['u_id'];
-
-    $sql="SELECT book.b_id,book.title,book.author,book.category,user.username FROM book,user WHERE book.u_id=user.u_id AND is_deleted='0' AND is_issued='0' order by entry_time desc";
+    $sql="SELECT book.b_id,book.title,book.author,book.category,user.username FROM book,user WHERE book.u_id=user.u_id AND is_deleted='0' AND is_issued='0' order by book.b_id desc";
     $result=$conn->query($sql);
     //html code goes here for table
     echo '<div class="w3-container">';
@@ -62,7 +61,6 @@ $conn = new mysqli('localhost','root','amarsql','library');
     echo '</tr>';
     echo '</thead>';
     echo '<tbody>';
-
     while($row=$result->fetch_assoc()){
     echo '<tr class="w3-white">';
     echo '<td>'.$row["b_id"].'</td>';
@@ -72,14 +70,10 @@ $conn = new mysqli('localhost','root','amarsql','library');
     echo '<td>'.$row["username"].'</td>';
     echo '</tr>';
     }
-
     echo '</tbody>';
     echo '</table>';
     echo '</div>';
-
-
 //ongoing issues 
-
     
 $sql="SELECT book.b_id,book.title,book.author,book.category,user.username FROM book,user WHERE book.u_id=user.u_id AND is_deleted='0' AND is_issued='1' order by entry_time desc";
 $result=$conn->query($sql);
@@ -111,10 +105,7 @@ while($row2=$result2->fetch_assoc()) {
   $a[]=$row2["username"];
   $i++;
 }
-
-echo $i;
 $i=0;
-
 while($row=$result->fetch_assoc())
 {
 echo '<tr class="w3-white">';
@@ -126,19 +117,11 @@ echo '<td>'.$row["username"].'</td>';
 echo '<td>'.$a[$i++].'</td>';
 echo '</tr>';
 }
-
 echo '</tbody>';
 echo '</table>';
 echo '</div>';
     //ends here
-
-
-
     
-
-
-
 ?>
-
-
-
+    </body>
+  </html>
