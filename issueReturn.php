@@ -60,7 +60,7 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
     //$u_id for checking if the book belongs to current user
     $u_id=$_SESSION['u_id'];
     //set connection and run query
-    $conn=new mysqli('localhost','sadatjub_book','*BFQK^QQRIi;','sadatjub_lib');
+    $conn=new mysqli();
         if($conn->connect_error) die("connection to db failed");
 
     $b_id=mysqli_real_escape_string($conn, $_POST["b_id"]);
