@@ -7,7 +7,7 @@ if(!isset($_SESSION['u_id'])){
   exit;
 }
 
-$conn=new mysqli('localhost','sadatjub_book','*BFQK^QQRIi;','sadatjub_lib');
+$conn=new mysqli();
     if($conn->connect_error) die("connection to db failed");
 
     $b_id=$_SESSION['b_id'];
