@@ -38,7 +38,7 @@
 
 
 <?php 
-    $conn=new mysqli('localhost','sadatjub_book','*BFQK^QQRIi;','sadatjub_lib');   
+    $conn=new mysqli();   
     //user id for the query
     $u_id=$_SESSION['u_id'];
     $sql="SELECT book.b_id,book.title,book.author,book.category,user.username FROM book,user WHERE book.u_id=user.u_id AND is_deleted='0' AND is_issued='0' order by book.b_id desc";
