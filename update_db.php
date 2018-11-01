@@ -6,7 +6,7 @@ if(!isset($_SESSION['u_id'])){
     header("Location: index.php");
     exit;
   }
-  $conn=new mysqli('localhost','sadatjub_book','*BFQK^QQRIi;','sadatjub_lib');
+  $conn=new mysqli();
       if($conn->connect_error) die("connection to db failed");
 
     if($_SERVER['REQUEST_METHOD']=='POST'){
@@ -25,7 +25,7 @@ if(!isset($_SESSION['u_id'])){
         }
         //else update the db
         else {
-            $conn=new mysqli('localhost','sadatjub_book','*BFQK^QQRIi;','sadatjub_lib');
+            $conn=new mysqli('');
                         if($conn->connect_error) die("connection to db failed");
             $sql="INSERT INTO `book` (`b_id`, `title`, `author`, `isbn`, `u_id`, `category`) VALUES (NULL, '$title', '$author', '$isbn', '$u_id', '$category')";
             $conn->query($sql);
